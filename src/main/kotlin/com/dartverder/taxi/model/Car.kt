@@ -7,12 +7,6 @@ import javax.persistence.*
 @Table(name = "car")
 open class Car : Identifiable() {
 
-    @Column(name = "model", nullable = false)
-    open var model: String? = null
-
-    @Column(name = "brand", nullable = false)
-    open var brand: String? = null
-
     @Column(name = "colour", nullable = false)
     open var colour: String? = null
 
@@ -31,4 +25,8 @@ open class Car : Identifiable() {
     @ManyToOne(optional = false)
     @JoinColumn(name = "driver_id", nullable = false)
     open var driver: Driver? = null
+
+    @ManyToOne
+    @JoinColumn(name = "car_model_id")
+    open var carModel: CarModel? = null
 }
