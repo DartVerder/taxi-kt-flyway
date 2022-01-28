@@ -26,6 +26,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation ("org.mapstruct:mapstruct:1.4.2.Final")
+	annotationProcessor ("org.mapstruct:mapstruct-processor:1.4.2.Final")
 }
 
 tasks.withType<KotlinCompile> {

@@ -8,9 +8,4 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("addresses")
 class AddressController(private val addressService: AddressService) : BaseController<Address>(addressService) {
-    override fun update(entity: Address, id: Long) {
-        entity.id = id
-        addressService.save(entity)
-    }
-
 }

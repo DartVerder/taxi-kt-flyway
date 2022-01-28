@@ -8,9 +8,4 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("drivers")
 class DriverController(private val driverService: DriverService) : BaseController<Driver>(driverService) {
-    override fun update(entity: Driver, id: Long) {
-        entity.id = id
-        driverService.save(entity)
-    }
-
 }

@@ -10,9 +10,4 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("tripAddresses")
 class TripAddressesAddressesController(private val tripAddressesService: TripAddressesService) :
     BaseController<TripAddresses>(tripAddressesService) {
-    override fun update(entity: TripAddresses, id: Long) {
-        entity.id = id
-        tripAddressesService.save(entity)
-    }
-
 }

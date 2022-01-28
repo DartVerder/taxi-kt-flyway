@@ -4,7 +4,7 @@ import com.dartverder.taxi.service.BaseService
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.*
 
-open class BaseServiceImpl<E>(protected open val repository: JpaRepository<E, Long>) : BaseService<E> {
+open class BaseServiceImpl<E: Any>(protected open val repository: JpaRepository<E, Long>) : BaseService<E> {
 
     override fun save(entity: E) {
         repository.save(entity)
