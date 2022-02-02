@@ -1,13 +1,19 @@
 package com.dartverder.taxi.service.impl
 
+import com.dartverder.taxi.model.Identifiable
 import com.dartverder.taxi.service.BaseService
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.*
 
-open class BaseServiceImpl<E: Any>(protected open val repository: JpaRepository<E, Long>) : BaseService<E> {
+open class BaseServiceImpl<E : Identifiable>(protected open val repository: JpaRepository<E, Long>) : BaseService<E> {
 
     override fun save(entity: E) {
         repository.save(entity)
+    }
+
+    override fun update(entity: E, id: Long) {
+        entity.id = id
+        save(entity)
     }
 
     override fun findAll(): List<E>? {

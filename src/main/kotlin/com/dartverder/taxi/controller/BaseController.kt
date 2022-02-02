@@ -6,9 +6,9 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 
-abstract class BaseController<E: Identifiable>(val baseService: BaseService<E>) {
+abstract class BaseController<E : Identifiable>(val baseService: BaseService<E>) {
     @GetMapping
-    fun index() = baseService.findAll()
+    open fun index() = baseService.findAll()
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.FOUND)
@@ -20,8 +20,7 @@ abstract class BaseController<E: Identifiable>(val baseService: BaseService<E>) 
 
     @PutMapping("{id}")
     fun update(@RequestBody entity: E, @PathVariable id: Long) {
-        entity.id = id
-        baseService.save(entity)
+        baseService.update(entity, id)
     }
 
     @DeleteMapping("{id}")
