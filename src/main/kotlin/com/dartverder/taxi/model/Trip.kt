@@ -32,8 +32,7 @@ open class Trip(
     @OneToMany(mappedBy = "trip", orphanRemoval = true)
     open var tripAddresses: MutableList<TripAddresses> = mutableListOf()
 
-    @Column(name = "is_cancelled")
-    open var isCancelled: Boolean = false
+
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

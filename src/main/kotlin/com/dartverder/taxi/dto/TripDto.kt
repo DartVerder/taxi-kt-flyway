@@ -12,7 +12,6 @@ data class TripDto(
     var startTripDatetime: LocalDateTime? = null,
     var endTripDatetime: LocalDateTime? = null,
     var tripAddresses: MutableList<TripAddressesDto> = mutableListOf(),
-    var isCancelled: Boolean = false
 ) : Serializable {
     data class TripAddressesDto(var id: Long? = null, var orderInTrip: Int? = null, var address: AddressDto? = null) :
         Serializable

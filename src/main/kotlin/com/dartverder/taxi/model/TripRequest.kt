@@ -18,6 +18,11 @@ open class TripRequest : Identifiable() {
     @JoinColumn(name = "passenger_id")
     open var passenger: Passenger? = null
 
+    @Column(name = "is_cancelled")
+    open var isCancelled: Boolean = false
+
+    @Column(name = "distance", nullable = false)
+    open var distance: Double = 0.0
 
     @OneToOne(mappedBy = "tripRequest", orphanRemoval = true)
     open var trip: Trip? = null

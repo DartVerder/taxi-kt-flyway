@@ -6,5 +6,9 @@ import com.dartverder.taxi.service.TripRequestService
 import org.springframework.stereotype.Service
 
 @Service
-class TripRequestServiceImpl(repository: TripRequestRepository) : BaseServiceImpl<TripRequest>(repository),
-    TripRequestService
+class TripRequestServiceImpl(override val repository: TripRequestRepository) : BaseServiceImpl<TripRequest>(repository),
+    TripRequestService {
+    override fun findActive() = repository.findActiveTripRequests()
+
+    override fun findCancelled() = repository.findCancelledTripRequests()
+}
