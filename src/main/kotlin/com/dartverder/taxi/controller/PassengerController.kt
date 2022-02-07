@@ -1,7 +1,10 @@
 package com.dartverder.taxi.controller
 
+import com.dartverder.taxi.dto.PassengerDto
+import com.dartverder.taxi.mapper.PassengerMapper
 import com.dartverder.taxi.model.Passenger
 import com.dartverder.taxi.service.PassengerService
+import org.mapstruct.factory.Mappers
 
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -9,5 +12,5 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("passengers")
 class PassengerController(private val passengerService: PassengerService) :
-    BaseController<Passenger>(passengerService) {
+    BaseController<Passenger, PassengerDto>(passengerService, Mappers.getMapper(PassengerMapper::class.java)) {
 }
