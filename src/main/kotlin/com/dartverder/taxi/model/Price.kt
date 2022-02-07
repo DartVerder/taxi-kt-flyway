@@ -7,12 +7,14 @@ import javax.persistence.*
 open class Price(
     @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "fare_id", nullable = false)
-    open var fare: Fare
+    open var fare: Fare,
+
+    @OneToOne(mappedBy = "price", orphanRemoval = true)
+    open var tripRequest: TripRequest
 ) : Identifiable() {
 
     @Transient
     open var coefficient: Double = 1.0
-        protected set
     //TODO calculate the coefficient
 
     @Column(name = "waiting_time")
@@ -20,9 +22,18 @@ open class Price(
 
     @Column(name = "full_price", nullable = false)
     open var fullPrice: Double? = 0.0
-        get() = waitingTime * fare.priceForWaiting + coefficient * fare.priceForDistance //TODO * distance
+        get() = waitingTime * fare.priceForWaiting + coefficient * fare.priceForDistance * tripRequest.distance
         protected set
 
-    @OneToOne(mappedBy = "price", orphanRemoval = true)
-    open var tripRequest: TripRequest? = null
+    private fun priceCalc ()
+    {
+        this.fullPrice = waitingTime * fare.priceForWaiting + coefficient * fare.priceForDistance * tripRequest.distance
+    }
+
+    @PrePersist
+    @PreUpdate
+    open fun prePersist() {
+        priceCalc()
+    }
+
 }
