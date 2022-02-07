@@ -6,11 +6,15 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "trip")
-open class Trip : Identifiable() {
-
+open class Trip(
     @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "trip_request_id", nullable = false)
-    open var tripRequest: TripRequest? = null
+    open var tripRequest: TripRequest,
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "driver_id", nullable = false)
+    open var driver: Driver
+) : Identifiable() {
 
     @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "payment_id", nullable = false)
@@ -25,12 +29,12 @@ open class Trip : Identifiable() {
     @Column(name = "end_trip_datetime", nullable = false)
     open var endTripDatetime: LocalDateTime? = null
 
-    @ManyToOne
-    @JoinColumn(name = "driver_id")
-    open var driver: Driver? = null
-
     @OneToMany(mappedBy = "trip", orphanRemoval = true)
     open var tripAddresses: MutableList<TripAddresses> = mutableListOf()
+
+    @Column(name = "is_cancelled")
+    open var isCancelled: Boolean = false
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false

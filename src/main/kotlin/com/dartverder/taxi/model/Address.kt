@@ -7,19 +7,17 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "address")
-open class Address : Identifiable() {
-
-    @Column(name = "city")
-    open var city: String? = null
-
-    @Column(name = "street")
-    open var street: String? = null
-
+open class Address(
     @Column(name = "house_number", nullable = false)
-    open var houseNumber: String? = null
+    open var houseNumber: String,
+    @Column(name = "street", nullable = false)
+    open var street: String,
+    @Column(name = "city", nullable = false)
+    open var city: String
+) : Identifiable() {
 
-    @Column(name = "enterance", nullable = false)
-    open var enterance: Int? = null
+    @Column(name = "entrance")
+    open var entrance: Int? = null
 
     @OneToMany(mappedBy = "address", orphanRemoval = true)
     open var tripAddresses: MutableSet<TripAddresses> = mutableSetOf()

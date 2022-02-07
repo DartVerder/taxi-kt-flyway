@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "trip_addresses")
 open class TripAddresses : Identifiable() {
 
-    @Column(name = "orderInTrip", nullable = false)
+    @Column(name = "order_in_trip", nullable = false)
     open var orderInTrip: Int? = null
 
     @ManyToOne

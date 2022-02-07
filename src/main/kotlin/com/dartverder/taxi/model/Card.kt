@@ -7,15 +7,16 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "card")
-open class Card : Identifiable() {
-
+open class Card(
     @Column(name = "card_number", nullable = false, unique = true)
-    open var cardNumber: String? = null
+    open var cardNumber: String,
 
     @Column(name = "expire_date", nullable = false)
-    open var expireDate: LocalDate? = null
+    open var expireDate: LocalDate,
 
     @Column(name = "cvc_cvv", nullable = false)
-    open var cvcCvv: Int? = null
+    open var cvcCvv: Int
+) : Identifiable() {
+
 
 }

@@ -5,28 +5,29 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "car")
-open class Car : Identifiable() {
-
-    @Column(name = "colour", nullable = false)
-    open var colour: String? = null
-
-    @Column(name = "production_date", nullable = false)
-    open var productionDate: LocalDate? = null
-
-    @Column(name = "comfort_class", nullable = false)
-    open var comfortClass: Int? = null
-
+open class Car(
     @Column(name = "license_plate", nullable = false, length = 12)
-    open var licensePlate: String? = null
-
-    @Column(name = "child_safety_seat")
-    open var childSafetySeat: Int? = null
+    open var licensePlate: kotlin.String,
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "driver_id", nullable = false)
-    open var driver: Driver? = null
+    open var driver: com.dartverder.taxi.model.Driver,
 
-    @ManyToOne
-    @JoinColumn(name = "car_model_id")
-    open var carModel: CarModel? = null
+    @Column(name = "colour", nullable = false)
+    open var colour: kotlin.String,
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "car_model_id", nullable = false)
+    open var carModel: CarModel
+) : Identifiable() {
+
+    @Column(name = "production_date")
+    open var productionDate: LocalDate? = null
+
+    @Column(name = "comfort_class", nullable = false)
+    open var comfortClass: Int = 0
+
+    @Column(name = "child_safety_seat")
+    open var childSafetySeat: Int = 0
+
 }

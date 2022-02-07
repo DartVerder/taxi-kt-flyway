@@ -19,8 +19,8 @@ open class Fare : Identifiable() {
     open var city: String? = null
 
     @Column(name = "price_for_distance", nullable = false)
-    open var priceForDistance: Double? = null
+    open var priceForDistance: Double = 50.0
 
     @Column(name = "price_for_waiting", nullable = false)
-    open var priceForWaiting: Double? = null
+    open var priceForWaiting: Double = 5.0
 }
