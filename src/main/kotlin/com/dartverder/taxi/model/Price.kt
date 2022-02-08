@@ -21,12 +21,10 @@ open class Price(
     open var waitingTime: Int = 0
 
     @Column(name = "full_price", nullable = false)
-    open var fullPrice: Double? = 0.0
-        get() = waitingTime * fare.priceForWaiting + coefficient * fare.priceForDistance * tripRequest.distance
+    open var fullPrice: Double = 0.0
         protected set
 
-    private fun priceCalc ()
-    {
+    private fun priceCalc() {
         this.fullPrice = waitingTime * fare.priceForWaiting + coefficient * fare.priceForDistance * tripRequest.distance
     }
 

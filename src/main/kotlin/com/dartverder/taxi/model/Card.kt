@@ -16,7 +16,4 @@ open class Card(
 
     @Column(name = "cvc_cvv", nullable = false)
     open var cvcCvv: Int
-) : Identifiable() {
-
-
-}
+) : Identifiable()

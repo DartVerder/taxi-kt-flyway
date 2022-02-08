@@ -8,7 +8,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "passenger")
-open class Passenger : User() {
+open class Passenger(firstName: String, lastName: String) : User(firstName, lastName) {
     @Range(min = 0, max = 20)
     @Column(name = "discount", nullable = false)
     open var discount: Double = 0.0
