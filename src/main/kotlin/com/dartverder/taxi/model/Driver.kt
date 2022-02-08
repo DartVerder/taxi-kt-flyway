@@ -5,7 +5,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "driver")
 open class Driver(firstName: String, lastName: String) : User(firstName, lastName) {
-    @Column(name = "drivers_license", nullable = false)
+    @Column(name = "drivers_license", nullable = false, unique = true)
     open var driversLicense: String? = null
 
     @Column(name = "certification_level")
