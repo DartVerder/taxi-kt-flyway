@@ -6,6 +6,4 @@ import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
-abstract class FareMapper : BaseMapper<Fare, FareDto>() {
-
-}
+abstract class FareMapper : BaseMapper<Fare, FareDto>()

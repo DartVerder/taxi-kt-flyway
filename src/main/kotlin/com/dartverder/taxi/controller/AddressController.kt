@@ -12,6 +12,4 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("addresses")
 class AddressController(addressService: AddressService) :
-    BaseController<Address, AddressDto>(addressService, Mappers.getMapper(AddressMapper::class.java)) {
-
-}
+    BaseController<Address, AddressDto>(addressService, Mappers.getMapper(AddressMapper::class.java))

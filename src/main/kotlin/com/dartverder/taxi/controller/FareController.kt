@@ -11,6 +11,5 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("fares")
-class FareController(private val fareService: FareService) :
-    BaseController<Fare, FareDto>(fareService, Mappers.getMapper(FareMapper::class.java)) {
-}
+class FareController(fareService: FareService) :
+    BaseController<Fare, FareDto>(fareService, Mappers.getMapper(FareMapper::class.java))

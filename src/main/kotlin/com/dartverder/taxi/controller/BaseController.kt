@@ -6,8 +6,10 @@ import com.dartverder.taxi.service.BaseService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-abstract class BaseController<E : Identifiable, D>(val baseService: BaseService<E>, val baseMapper: BaseMapper<E, D>) {
-
+abstract class BaseController<E : Identifiable, D>(
+    open val baseService: BaseService<E>,
+    open val baseMapper: BaseMapper<E, D>
+) {
     @GetMapping
     open fun index() = baseMapper.entityListToDtoList(baseService.findAll())
 

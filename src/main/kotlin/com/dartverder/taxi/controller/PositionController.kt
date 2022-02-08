@@ -11,6 +11,5 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("positions")
-class PositionController(private val positionService: PositionService) :
-    BaseController<Position, PositionDto>(positionService, Mappers.getMapper(PositionMapper::class.java)) {
-}
+class PositionController(positionService: PositionService) :
+    BaseController<Position, PositionDto>(positionService, Mappers.getMapper(PositionMapper::class.java))
