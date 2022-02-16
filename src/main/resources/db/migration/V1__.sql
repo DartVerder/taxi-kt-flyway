@@ -7,19 +7,21 @@ CREATE TABLE address
     street       VARCHAR(255) NOT NULL,
     city         VARCHAR(255) NOT NULL,
     entrance     INTEGER,
+    position_id  BIGINT       NOT NULL,
     CONSTRAINT pk_address PRIMARY KEY (id)
 );
 
 CREATE TABLE car
 (
     id                BIGINT       NOT NULL,
-    license_plate     VARCHAR(12)  NOT NULL UNIQUE,
+    license_plate     VARCHAR(6)  NOT NULL,
+    region            INTEGER      NOT NULL,
     driver_id         BIGINT       NOT NULL,
     colour            VARCHAR(255) NOT NULL,
     car_model_id      BIGINT       NOT NULL,
     production_date   date,
     comfort_class     INTEGER      NOT NULL DEFAULT 0,
-    child_safety_seat INTEGER DEFAULT 0,
+    child_safety_seat INTEGER               DEFAULT 0,
     CONSTRAINT pk_car PRIMARY KEY (id)
 );
 
@@ -48,7 +50,7 @@ CREATE TABLE driver
     date_of_birth       date             NOT NULL,
     rating              DOUBLE PRECISION NOT NULL DEFAULT 5.0,
     card_id             BIGINT           NOT NULL,
-    drivers_license     VARCHAR(255) NOT NULL UNIQUE,
+    drivers_license     VARCHAR(255)     NOT NULL UNIQUE,
     certification_level INTEGER,
     position_id         BIGINT,
     driver_id           BIGINT,
@@ -117,10 +119,10 @@ CREATE TABLE trip
 
 CREATE TABLE trip_addresses
 (
-    id            BIGINT  NOT NULL,
-    order_in_trip INTEGER NOT NULL,
-    address_id    BIGINT,
-    trip_id       BIGINT,
+    id              BIGINT  NOT NULL,
+    order_in_trip   INTEGER NOT NULL,
+    address_id      BIGINT  NOT NULL,
+    trip_request_id BIGINT  NOT NULL,
     CONSTRAINT pk_trip_addresses PRIMARY KEY (id)
 );
 
@@ -130,8 +132,8 @@ CREATE TABLE trip_request
     datetime_of_creation TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     price_id             BIGINT                      NOT NULL,
     passenger_id         BIGINT,
-    distance DOUBLE PRECISION NOT NULL DEFAULT 0.0,
-    is_cancelled        BOOLEAN DEFAULT false,
+    distance             DOUBLE PRECISION            NOT NULL DEFAULT 0.0,
+    is_cancelled         BOOLEAN                              DEFAULT false,
     CONSTRAINT pk_trip_request PRIMARY KEY (id)
 );
 
@@ -163,7 +165,7 @@ ALTER TABLE trip_addresses
     ADD CONSTRAINT FK_TRIP_ADDRESSES_ON_ADDRESS FOREIGN KEY (address_id) REFERENCES address (id);
 
 ALTER TABLE trip_addresses
-    ADD CONSTRAINT FK_TRIP_ADDRESSES_ON_TRIP FOREIGN KEY (trip_id) REFERENCES trip (id);
+    ADD CONSTRAINT FK_TRIP_ADDRESSES_ON_TRIP_REQUEST FOREIGN KEY (trip_request_id) REFERENCES trip_request (id);
 
 ALTER TABLE trip
     ADD CONSTRAINT FK_TRIP_ON_DRIVER FOREIGN KEY (driver_id) REFERENCES driver (id);
