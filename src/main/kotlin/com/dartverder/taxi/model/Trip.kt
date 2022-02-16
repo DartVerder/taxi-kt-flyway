@@ -6,15 +6,15 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "trip")
-open class Trip(
+open class Trip : Identifiable() {
+
     @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "trip_request_id", nullable = false)
-    open var tripRequest: TripRequest,
+    open var tripRequest: TripRequest? = null
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "driver_id", nullable = false)
-    open var driver: Driver
-) : Identifiable() {
+    open var driver: Driver? = null
 
     @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "payment_id", nullable = false)
@@ -28,9 +28,6 @@ open class Trip(
 
     @Column(name = "end_trip_datetime", nullable = false)
     open var endTripDatetime: LocalDateTime? = null
-
-    @OneToMany(mappedBy = "trip", orphanRemoval = true)
-    open var tripAddresses: MutableList<TripAddresses> = mutableListOf()
 
 
     override fun equals(other: Any?): Boolean {

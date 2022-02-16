@@ -8,14 +8,12 @@ import javax.persistence.MappedSuperclass
 import javax.persistence.OneToOne
 
 @MappedSuperclass
-abstract class User(
+abstract class User : Identifiable() {
     @Column(name = "first_name", nullable = false)
-    open var firstName: String,
+    open var firstName: String? = null
 
     @Column(name = "last_name", nullable = false)
-    open var lastName: String
-) : Identifiable() {
-
+    open var lastName: String? = null
 
     @Column(name = "date_of_birth", nullable = false)
     open var dateOfBirth: LocalDate? = null

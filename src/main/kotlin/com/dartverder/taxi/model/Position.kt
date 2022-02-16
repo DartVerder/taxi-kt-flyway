@@ -10,10 +10,10 @@ import javax.persistence.Table
 open class Position : Identifiable() {
 
     @Column(name = "latitude", nullable = false)
-    open var latitude: Double? = null
+    open var latitude: Double = 0.0
 
     @Column(name = "longitude", nullable = false)
-    open var longitude: Double? = null
+    open var longitude: Double = 0.0
 
     @OneToOne(mappedBy = "position", optional = false, orphanRemoval = true)
     open var driver: Driver? = null

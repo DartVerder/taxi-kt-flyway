@@ -5,11 +5,11 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "trip_request")
-open class TripRequest(
+open class TripRequest : Identifiable() {
+
     @ManyToOne
     @JoinColumn(name = "passenger_id")
-    open var passenger: Passenger
-) : Identifiable() {
+    open var passenger: Passenger? = null
 
     @Column(name = "datetime_of_creation", nullable = false)
     open var datetimeOfCreation: LocalDateTime? = null
@@ -27,5 +27,7 @@ open class TripRequest(
     @OneToOne(mappedBy = "tripRequest", orphanRemoval = true)
     open var trip: Trip? = null
 
+    @OneToMany(mappedBy = "tripRequest", orphanRemoval = true)
+    open var tripAddresses: MutableList<TripAddresses> = mutableListOf()
 
 }

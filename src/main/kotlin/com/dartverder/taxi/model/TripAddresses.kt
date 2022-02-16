@@ -14,6 +14,6 @@ open class TripAddresses : Identifiable() {
     open var address: Address? = null
 
     @ManyToOne
-    @JoinColumn(name = "trip_id")
-    open var trip: Trip? = null
+    @JoinColumn(name = "trip_request_id")
+    open var tripRequest: TripRequest? = null
 }
