@@ -16,11 +16,11 @@ abstract class TripMobileMapper : MobileMapper<Trip, TripMobileDto>() {
 
     @AfterMapping
     fun setCustomFieldsDto(@MappingTarget tripMobileDto: TripMobileDto, trip: Trip) {
-        val passenger = trip.tripRequest.passenger
-        tripMobileDto.passengerName = passenger.firstName + " " + passenger.lastName
+        val passenger = trip.tripRequest?.passenger
+        tripMobileDto.passengerName = passenger?.firstName + " " + passenger?.lastName
         val driver = trip.driver
-        tripMobileDto.driverName = driver.firstName + " " + driver.lastName
-        tripMobileDto.fullPrice = trip.tripRequest.price?.fullPrice
+        tripMobileDto.driverName = driver?.firstName + " " + driver?.lastName
+        tripMobileDto.fullPrice = trip.tripRequest?.price?.fullPrice
     }
 
 }

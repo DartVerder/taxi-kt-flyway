@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("tripRequests")
+@RequestMapping("triprequests")
 class TripRequestRequestController(private val tripRequestService: TripRequestService) :
     BaseWithMobileController<TripRequest, TripRequestDto, TripRequesMobiletDto>(
         tripRequestService,

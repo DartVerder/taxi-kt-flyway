@@ -30,4 +30,8 @@ interface DriverRepository : JpaRepository<Driver, Long> {
     )
     fun driversOrderedByTotalIncome(): List<Driver>
 
+
+    @Query("select d from Driver d left join d.trips trips where trips.endTripDatetime is not null")
+    fun findFreeDrivers(): List<Driver>
+
 }

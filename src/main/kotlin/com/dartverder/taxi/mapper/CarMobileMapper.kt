@@ -13,7 +13,7 @@ abstract class CarMobileMapper : MobileMapper<Car, CarMobileDto>() {
     @AfterMapping
     fun setCarModelDto(@MappingTarget carMobileDto: CarMobileDto, car: Car) {
         val carModel = car.carModel
-        carMobileDto.carModel = carModel.brand + " " + carModel.model
+        carMobileDto.carModel = carModel?.brand + " " + carModel?.model
     }
 
 }
